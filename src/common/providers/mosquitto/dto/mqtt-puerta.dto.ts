@@ -1,6 +1,15 @@
-export interface MqttPuertaDto {
-  linkquality: number
-  power_on_behavior: string
-  state: string
-  switch_type: string
+import { IsNumber, IsString } from 'class-validator';
+
+export class MqttPuertaDto {
+  @IsNumber()
+  linkquality: number;
+
+  @IsString()
+  power_on_behavior: string;
+
+  @IsString()
+  state: string;
+
+  @IsString()
+  switch_type: string;
 }
