@@ -58,7 +58,7 @@ export class MqttService {
   publish(topic: string, message: MqttPuertaDto) {
     try {
       this.client.publish(topic, JSON.stringify(message));
-      this.logger.log(`Published message: ${message} to Topic: ${topic}`);
+      this.logger.log(`Published message: ${JSON.stringify(message)} to Topic: ${topic}`);
       return true;
     } catch (error) {
       return false;
