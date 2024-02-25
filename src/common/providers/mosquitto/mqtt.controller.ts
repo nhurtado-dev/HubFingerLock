@@ -1,7 +1,8 @@
-import { Controller, Param, Post, Query } from '@nestjs/common';
+import { Body, Controller, Param, Post, Query } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
 import { MqttService } from './mqtt.service';
+import { MqttPuertaDto } from './dto/mqtt-puerta.dto';
 
 @ApiTags('MQTT')
 @Controller('mqtt')
@@ -19,8 +20,8 @@ export class MqttController {
   }
 
   @Post('publish/:topic')
-  public async publishMqtt(@Param('topic') topic: string, @Query('message') message: string) {
-    return this.mqttService.publish(topic, message);
+  public async publishMqtt(@Param('topic') topic: string, @Body() mqttPuertaDto: MqttPuertaDto) {
+    return this.mqttService.publish(topic, mqttPuertaDto);
   }
 
   @Post('connect')

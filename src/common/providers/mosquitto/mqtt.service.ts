@@ -1,5 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import * as mqtt from 'mqtt';
+import { MqttPuertaDto } from './dto/mqtt-puerta.dto';
 
 @Injectable()
 export class MqttService {
@@ -10,7 +11,7 @@ export class MqttService {
   constructor() {
     // Inicializamos el cliente MQTT
     this.client = mqtt.connect('mqtt://localhost', {
-      username: 'fingerspyker',
+      username: 'YOUR_USERNAME',
       password: 'NobleM600$',
     });
 
@@ -54,9 +55,9 @@ export class MqttService {
     }
   }
 
-  publish(topic: string, message: string) {
+  publish(topic: string, message: MqttPuertaDto) {
     try {
-      this.client.publish(topic, message);
+      this.client.publish(topic, JSON.stringify(message));
       this.logger.log(`Published message: ${message} to Topic: ${topic}`);
       return true;
     } catch (error) {
