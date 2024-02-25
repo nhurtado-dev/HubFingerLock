@@ -1,6 +1,9 @@
 import { IsNumber, IsString } from 'class-validator';
 
 export class MqttPuertaDto {
+  @IsString()
+  action: string
+
   @IsNumber()
   linkquality: number;
 
